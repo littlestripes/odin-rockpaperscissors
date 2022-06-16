@@ -48,11 +48,11 @@ function game(rounds=5) {
   let i = 0;
   for (i = 0; i < rounds; i++) {
     let roundChoice = prompt("rock, paper, or scissors?");
-    if (validChoice(roundChoice)) {
-      console.log(playRound(roundChoice));
-    } else if (roundChoice == null) {
+    if (roundChoice === null) {
       alert("sayonara, then");
-      return;
+      return true;
+    } else if (validChoice(roundChoice)) {
+      console.log(playRound(roundChoice));
     } else {
       alert("invalid input!!");
       i--;
