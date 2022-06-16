@@ -1,10 +1,21 @@
 // array of possible plays for the computer and the player to choose from
-let plays = ["rock", "paper", "scissors"];
+const plays = ["rock", "paper", "scissors"];
 
-function computerPlay() {
-  // returns a randomly selected element from the valid plays
+let score = 0;
+
+// returns a random choice from the plays array
+let computerPlay = () => {
   return plays[Math.floor(Math.random() * plays.length)];
-}
+};
+
+// player input validity checker
+let validChoice = (choice) => {
+  // format string
+  choice = choice.toLowerCase();
+  choice = choice.trim();
+  // test membership of input choice in plays array
+  return (plays.indexOf(choice) >= 0);
+};
 
 function playRound(playerSelection, computerSelection=computerPlay()) {
   // make playerSelection case match plays array case
@@ -18,10 +29,12 @@ function playRound(playerSelection, computerSelection=computerPlay()) {
 					(playerSelection === "paper" && computerSelection === "rock")
 	);
 
+  // message logic
   if (playerSelection === computerSelection) {
     return `tie!! you both picked ${playerSelection}`;
   } else {
 		if (playerWon) {
+      score++;
       return `good job bud, ${playerSelection} beats ${computerSelection}`;
     } else {
       return `sorry pal, ${computerSelection} beats ${playerSelection}`;
@@ -31,8 +44,19 @@ function playRound(playerSelection, computerSelection=computerPlay()) {
 
 // main game loop
 function game(rounds=5) {
-  for (let i = 0; i < rounds; i++) {
+  let i = 0;
+  for (i = 0; i < rounds; i++) {
     let roundChoice = prompt("rock, paper, or scissors?");
-    console.log(playRound(roundChoice));
+    if (validChoice(roundChoice)) {
+      console.log(playRound(roundChoice));
+    } else {
+      alert("invalid input!!");
+      i--;
+    }
   }
+
+  // if all goes well, this happens
+  console.log(`your final score is ${score}`);
+  score = 0;
+  return true;
 }
