@@ -18,8 +18,9 @@ let validChoice = (choice) => {
 };
 
 function playRound(playerSelection, computerSelection=computerPlay()) {
-  // make playerSelection case match plays array case
+  // format playerSelection to match plays array elements
   playerSelection = playerSelection.toLowerCase();
+  playerSelection = playerSelection.trim();
 
 	// win condition bool object
 	let playerWon = (
@@ -49,6 +50,9 @@ function game(rounds=5) {
     let roundChoice = prompt("rock, paper, or scissors?");
     if (validChoice(roundChoice)) {
       console.log(playRound(roundChoice));
+    } else if (roundChoice == null) {
+      alert("sayonara, then");
+      return;
     } else {
       alert("invalid input!!");
       i--;
