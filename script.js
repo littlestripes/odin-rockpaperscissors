@@ -22,19 +22,19 @@ function playRound(playerSelection, computerSelection=computerPlay()) {
   playerSelection = playerSelection.toLowerCase();
   playerSelection = playerSelection.trim();
 
-	// win condition bool object
-	let playerWon = (
-					playerSelection !== computerSelection &&
-					(playerSelection === "rock" && computerSelection === "scissors") ||
-					(playerSelection === "scissors" && computerSelection === "paper") ||
-					(playerSelection === "paper" && computerSelection === "rock")
-	);
+  // win condition bool object
+  let playerWon = (
+    playerSelection !== computerSelection &&
+    (playerSelection === "rock" && computerSelection === "scissors") ||
+    (playerSelection === "scissors" && computerSelection === "paper") ||
+    (playerSelection === "paper" && computerSelection === "rock")
+  );
 
   // message logic
   if (playerSelection === computerSelection) {
     return `tie!! you both picked ${playerSelection}`;
   } else {
-		if (playerWon) {
+    if (playerWon) {
       score++;
       return `good job bud, ${playerSelection} beats ${computerSelection}`;
     } else {
